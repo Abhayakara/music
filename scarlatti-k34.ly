@@ -124,7 +124,7 @@ keyMeter = { \key d \minor \time 3/4 }
   % Measure 23
   ees4) bes'8 g (ees_2 d~ |
   s2. |
-  g,4 g' g,_2 |
+  g,4 g' g, |
 
   % Measure 24
   d16-3 cis-2 d cis d cis b cis d4) |
