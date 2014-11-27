@@ -29,7 +29,7 @@ keyMeter = { \key d \minor \time 3/4 }
   <d_1 a'_4>4 a_2 d, |
 
   % Measure 5
-  d'-3 f8 (d-4 bes-2 a | \break
+  \break d'-3 f8 (d-4 bes-2 a |
   s4\mp s s |
   d'4_5 d' f,_3 |
 
@@ -39,18 +39,18 @@ keyMeter = { \key d \minor \time 3/4 }
   e4_1 d c_5 |
 
   % Measure 7
-  bes4) f'8-5 (d-4 bes a~ |
+  bes4) f'8-5 (d-4 bes a |
   s2. |
   d4 d'_1 f,_3 |
 
   % Measure 8
-  a16-3 gis-2 a gis a gis fis gis a4-1) |
-  % gis2^\trill \acciaccatura { fis16 gis } a4) |
+  % a16-3 gis-2 a gis a gis fis gis a4-1) |
+  gis2^\trill \acciaccatura { fis16 gis } a4) |
   s2. |
   e4_1 b c |
 
   % Measure 9
-  b16-2 (c d8 c b a4) | \break
+  \break b16-2 (c d8 c b a4) |
   s2.\f |
   d4_3 (e f) |
 
@@ -72,7 +72,7 @@ keyMeter = { \key d \minor \time 3/4 }
 
 \parallelMusic #'(ve dynF vg) {
   % Measure 13
-  c'4-2 f8-5 (c-3 a f | \break
+  \break c'4-2 f8-5 (c-3 a f |
   s4\mf s2 |
   a4_2 f a |
 
@@ -92,7 +92,7 @@ keyMeter = { \key d \minor \time 3/4 }
   f4_1 c_2 f, |
 
   % Measure 17
-  a'4-5 d,8 (ees b c) | \break
+  \break a'4-5 d,8 (ees b c) |
   s4\p s2 |
   fis'2_2-- r4 |
 
@@ -112,7 +112,7 @@ keyMeter = { \key d \minor \time 3/4 }
   g4 d_2 g, |
 
   % Measure 21
-  g'4-3 bes8 (g ees-3 d | \break
+  \break g'4-3 bes8 (g ees-3 d |
   s4\mp s2 |
   r4 g' bes,_4 |
 
@@ -122,18 +122,18 @@ keyMeter = { \key d \minor \time 3/4 }
   a4 g' f |
 
   % Measure 23
-  ees4) bes'8 g (ees_2 d~ |
+  ees4) bes'8 g (ees_2 d |
   s2. |
   g,4 g' g, |
 
   % Measure 24
-  d16-3 cis-2 d cis d cis b cis d4) |
-  % cis2^\trill \acciaccatura { b16 cis } d4) |
+  % d16-3 cis-2 d cis d cis b cis d4) |
+  cis2^\trill \acciaccatura { b16 cis } d4) |
   s4\< s s\! |
   a'4 e f |
 
   % Measure 25
-  e16 (f g8 f e d4) | \break
+  \break e16 (f g8 f e d4) |
   s2.\f |
   g4 (a bes) \clef treble |
 
@@ -161,8 +161,8 @@ keyMeter = { \key d \minor \time 3/4 }
                  \repeat volta 2 { \va } 
 				 \relative c'
                  \repeat volta 2 { \ve }}
-    \new Dynamics { \repeat volta 2 { \dynD }
-                    \repeat volta 2 { \dynF } }
+%    \new Dynamics { \repeat volta 2 { \dynD }
+%                    \repeat volta 2 { \dynF } }
     \new Staff = "bassStaff" { \keyMeter \clef bass
 			     \set midiInstrument = #"piano"
                  \relative c
