@@ -1,8 +1,9 @@
 PONDDIR=/Applications/LilyPond.app/Contents/Resources
 POND=$(PONDDIR)/bin/lilypond
 
-all: aylesford.pdf aylesford.midi
-	open aylesford.pdf
+wexford.pdf: wexford.ly
+	$(POND) wexford.ly
+	open wexford.pdf
 
 aylesford.pdf: aylesford.ly
 	$(POND) aylesford.ly
