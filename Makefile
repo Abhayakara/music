@@ -4,6 +4,7 @@ POND=$(PONDDIR)/bin/lilypond
 midnight.pdf: midnight.ly
 	$(POND) midnight.ly
 	open midnight.pdf
+	open midnight-SATB.pdf
 
 all: aylesford.pdf aylesford.midi scarlatti-k34.pdf scarlatti-k34.midi
 
