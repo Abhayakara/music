@@ -239,7 +239,7 @@ f,2. |
 	\new Lyrics \lyricsto "soprano" \verseOne
 	\new Lyrics \lyricsto "soprano" \verseTwo
 	\new Lyrics \lyricsto "soprano" \verseThree
-%	\new Lyrics \lyricsto "soprano" \verseFour
+	\new Lyrics \lyricsto "soprano" \verseFour
 	\new Lyrics \lyricsto "soprano" \verseFive
       >>
       \new Staff <<
@@ -271,7 +271,7 @@ f,2. |
 	\new Lyrics \lyricsto "soprano" \verseOne
 	\new Lyrics \lyricsto "soprano" \verseTwo
 	\new Lyrics \lyricsto "soprano" \verseThree
-%	\new Lyrics \lyricsto "soprano" \verseFour
+	\new Lyrics \lyricsto "soprano" \verseFour
 	\new Lyrics \lyricsto "soprano" \verseFive
       >>
       \new Staff <<

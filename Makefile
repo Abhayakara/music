@@ -1,9 +1,13 @@
 PONDDIR=/Applications/LilyPond.app/Contents/Resources
 POND=$(PONDDIR)/bin/lilypond
 
+romanza.pdf: romanza.ly
+	$(POND) romanza.ly
+	open romanza.pdf
+
+
 fuga.pdf: fuga.ly
 	$(POND) fuga.ly
-	open fuga.pdf
 
 midnight.pdf: midnight.ly
 	$(POND) midnight.ly
