@@ -5,6 +5,9 @@ romanza.pdf: romanza.ly
 	$(POND) romanza.ly
 	open romanza.pdf
 
+foo.pdf: foo.ly
+	$(POND) foo.ly
+	open foo.pdf
 
 fuga.pdf: fuga.ly
 	$(POND) fuga.ly

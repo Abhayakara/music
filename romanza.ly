@@ -13,20 +13,20 @@ keyMeter = { \key bes \major \time 4/4 }
 
 \parallelMusic #'(vta vtb vtc dynD vba vbb vbc) {
   % 1
-  f'2-4(\< e8 f e f\! |
+  f'2-4( e8 f e f |
   s1 |
   s1-"c espress." |
-  s1\p |
+  s8\p\< s8 s2 s8 s8\! |
   \stemUp d'2_3_5^( cis8 d cis d |
   \stemDown bes'4 bes bes bes |
   s1 |
 
   % 2
-  g8\> f ees d d4\!) f8.( d16 |
+  g8 f ees d d4) f8.( d16 |
   s1 |
   s1 |
-  s1 |
-  ees8 d ces bes) bes4 r |
+  s8\> s4. s4 s8\! s |
+  ees8 d c bes) bes4 r |
   bes4 r r2 |
   s1 |
 
@@ -49,19 +49,19 @@ keyMeter = { \key bes \major \time 4/4 }
   s1 |
 
   % 5
-  f2-1)( e8\< f e f\! |
+  f2-1)( e8 f e f |
   s1 |
   s1 |
-  s1 |
+  s2 s8\< s s s\! |
   d''2^( cis8  d cis d |
   bes'4 bes bes bes |
   s1 |
 
   % 6
-  g8\> f ees d d4\!) f8.( d16 |
+  g8 f ees d d4\!) f8.( d16 |
   s1 |
   s1 |
-  s1 |
+  s8\> s s s s\! s s4 |
   ees8 d c bes bes4) r |
   bes4 r r2 |
   s1 |
@@ -114,8 +114,8 @@ keyMeter = { \key bes \major \time 4/4 }
   <bes, f' bes>8\arpeggio\sustainOn r bes'4\sustainOff 4 4 | s1 |
 
   % 14
-  g8_[\> f ees d\!] d8)^"b)" d_[(\turn f d] | s1 | s1 |
-  s1 |
+  g8_[ f ees d] d8)^"b)" d_[(\turn f d] | s1 | s1 |
+  s8\> s s s\! s2 |
   ees8 d c bes bes4) r |
   bes4 r r2 | s1_"a)"_\markup {
     \score {
@@ -297,7 +297,7 @@ keyMeter = { \key bes \major \time 4/4 }
   r8 f,( <bes f'> d) r f,( <a ees'> c) |
   s1 | s1 |
   s1 |
-  <f bes d>4. r8 <ees bes' ees>4. r8 |
+  <f bes d>4. r8 <ees f a c>4. r8 |
   s1 | s1 |
 
   % 33
@@ -372,6 +372,7 @@ keyMeter = { \key bes \major \time 4/4 }
 	\new Voice = "bass-a" { \voiceOne \relative c \vba }
 	\new Voice = "bass-b" { \voiceTwo \relative c \vbb }
 	\new Voice = "bass-c" { \voiceThree \relative c \vbc } >> } >>
-  \layout { } }
+  \layout { } 
+  \midi { } }
 
 
