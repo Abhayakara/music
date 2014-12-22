@@ -17,7 +17,7 @@ keyMeter = { \key bes \major \time 4/4 }
   s1 |
   s1-"c espress." |
   s1\p |
-  \stemUp d'2_3_5^( cis8 d c d |
+  \stemUp d'2_3_5^( cis8 d cis d |
   \stemDown bes'4 bes bes bes |
   s1 |
 
@@ -41,7 +41,7 @@ keyMeter = { \key bes \major \time 4/4 }
 
   % 4
   bes4.^"a)"( c16 d <a c>8-1-2 d ees e-1 |
-  s4 s\turn s2 |
+  s4 s^\turn s2 |
   s1 |
   s1 |
   d8 f d f f,4) r |
@@ -58,7 +58,7 @@ keyMeter = { \key bes \major \time 4/4 }
   s1 |
 
   % 6
-  g8\> f e d d4\!) f8.( d16 |
+  g8\> f ees d d4\!) f8.( d16 |
   s1 |
   s1 |
   s1 |
@@ -176,7 +176,7 @@ keyMeter = { \key bes \major \time 4/4 }
   s1 |
   s4 c2. |
   \set fingeringOrientations = #'(down)
-  <c, a'>8)\sustainOn <g' c e>_[^( <g e'> <a f'>]\sustainOff <bes g'>4
+  <c, g'>8)\sustainOn <g' c e>_[^( <g e'> <a f'>]\sustainOff <bes g'>4
   <a-3 f'>8 <g-4 e'>]) |
   s1 |
 
@@ -247,7 +247,7 @@ keyMeter = { \key bes \major \time 4/4 }
   s1 |
   d4 \stemDown ees f f \stemNeutral |
   \override TupletBracket.bracket-visibility = ##t
-  ees4\rest \tupletUp \stemUp \tuplet 3/2 { ees8 f g} f4 \tuplet 3/2 { c8 d e } \stemNeutral \tupletNeutral|
+  ees4\rest \tupletUp \stemUp \tuplet 3/2 { ees8 f g} f4 \tuplet 3/2 { c8 d ees } \stemNeutral \tupletNeutral|
   s1 |
 
   % 27
