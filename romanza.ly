@@ -459,26 +459,19 @@ keyMeter = { \key bes \major \time 4/4 }
   \layout { } 
   \midi { } }
 
-\markup {
+\markuplist {
+  \null
+  \wordwrap-lines {
+  This score was typeset by Ted Lemon in 2014 for my father Ed Lemon Jr. 
   Thanks to David Nalesnik for the slanted pedal annotation to match the
-  1919 score. }
-\markup {
+  1919 score. 
   Thanks to Trevor Daniels for sample code to do a staff fragment in a
-  footnotes. }
-\markup { 
+  footnotes. 
   Thanks to Klaus Blum for advice on how to get the footnotes in a single
-  line. }
-\markup {
+  line. 
   Thanks to Kieran MacMillan for advice on how to properly lay out parallel
-  rests. }
-\markup {
-  This was typeset by Ted Lemon in 2014 for my father Ed Lemon Jr. }
-\markup {
-  License to use the typeset source is granted under the GNU Public License }
-\markup {
-  Please read the source for more details. }
-\markup {
-  This PDF (or printed copy) is in the public domain. }
+  rests.
+  This PDF (or printed copy) is in the public domain. } }
 
 \paper { ragged-bottom = ##t }
 
