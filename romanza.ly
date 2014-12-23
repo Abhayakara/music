@@ -238,13 +238,13 @@ keyMeter = { \key bes \major \time 4/4 }
   s1 |
 
   % 17
-  <ees, a c ees>4.\arpeggio \tuplet 3/2 { d16 c bes } a8) (c d ees | s1 | s1 |
+  <ees, a c ees>4.\arpeggio \tuplet 3/2 { d'16 c bes } a8) (c d ees | s1 | s1 |
   s1 |
   c''8\rest <c a>8^( <c a> <d bes> <c ees>4.) f8\rest |
   f8 f'4._~ f e8\rest | s1 |
 
   % 18
-  \break <f bes d f>4.\arpeggio \tuplet 3/2 { ees'16 d c } bes8) f'4.-3( |
+  \break <f, bes d f>4.\arpeggio \tuplet 3/2 { ees'16 d c } bes8) f'4.-3( |
   \set fingeringOrientations = #'(right)
   s2 s8 r8 <d' g-2>8 <a a'> | s1 |
   s4 s s s-"un poco cresc." |
@@ -474,4 +474,26 @@ keyMeter = { \key bes \major \time 4/4 }
   This PDF (or printed copy) is in the public domain. } }
 
 \paper { ragged-bottom = ##t }
+
+\book {
+  \bookOutputSuffix "bass"
+
+  \score {
+    \new PianoStaff <<
+      \new Staff = "bassStaff" {
+	\keyMeter \clef bass
+	\set midiInstrument = #"piano"
+	\set Staff.pedalSustainStyle = #'bracket
+	\override Staff.PianoPedalBracket.stencil = #slanted-bracket
+	<<
+	  \new Voice = "bass-a" { \voiceOne \relative c \vba }
+	  \new Voice = "bass-b" { \voiceTwo \relative c \vbb }
+	  \new Voice = "bass-c" { \voiceThree \relative c \vbc } >> } 
+    >>
+    \layout { 
+    }
+    \midi {
+    }
+  }
+}
 
