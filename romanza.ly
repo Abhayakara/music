@@ -1,4 +1,23 @@
-#(set-global-staff-size 22)
+% Copyright (C) 2014 Edward W. Y. Lemon III
+
+% Lilypond version of M. Moszkowski's arrangement of W. A. Mozart's
+% Romanza from his Concerto for Piano in D minor.   The printed arrangement
+% is copyright 1919, and hence in the public domain in the U.S.
+% This Lilypond source code is under copyright.
+
+%    This program is free software: you can redistribute it and/or modify
+%    it under the terms of the GNU General Public License as published by
+%    the Free Software Foundation, either version 3 of the License, or
+%    (at your option) any later version.
+%
+%    This program is distributed in the hope that it will be useful,
+%    but WITHOUT ANY WARRANTY; without even the implied warranty of
+%    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+%    GNU General Public License for more details.
+%
+%    You should have received a copy of the GNU General Public License
+%    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
 \header{
   title = "Romanza"
   composer = "Wolfgang Amadeus Mozart"
@@ -7,7 +26,52 @@
   subtitle = "from Concerto for Piano in D minor"
 }
 
-#(set-global-staff-size 21)
+#(set-global-staff-size 20)
+
+% Thanks to David Nalesnik for the slanted-bracket tweak!
+#(define (bound-coord bound refp)
+   (if (not (= (ly:item-break-dir bound) CENTER))
+       (cdr (ly:generic-bound-extent bound refp))
+       (ly:grob-relative-coordinate bound refp X)))
+
+#(define slanted-bracket
+   (lambda (grob)
+     (let* ((bound-L (ly:spanner-bound grob LEFT))
+            (bound-R (ly:spanner-bound grob RIGHT))
+            (common (ly:grob-common-refpoint bound-L bound-R X))
+            (coord-L (bound-coord bound-L common))
+            (coord-R (bound-coord bound-R common))
+            (height (ly:grob-property grob 'edge-height))
+            (shorten (ly:grob-property grob 'shorten-pair))
+            (flare '(0.25 . 0.25))
+            (th (ly:output-def-lookup (ly:grob-layout grob) 'line-thickness))
+            (main
+             (make-line-stencil 
+              th 
+              (+ coord-L (car flare) (car shorten)) 0
+              (+ coord-R (- (cdr flare)) (cdr shorten)) (car height)))
+            (wing-L (make-line-stencil
+                     th
+                     0 (car height)
+                     (car flare) 0))
+            (wing-R (make-line-stencil
+                     th
+                     0 (car height)
+                     (cdr flare) (- (car height) (cdr height))))
+            (main
+             (if (= (ly:item-break-dir bound-L) CENTER)
+                 (ly:stencil-combine-at-edge main X LEFT wing-L 0)
+                 main))
+            (main
+             (if (= (ly:item-break-dir bound-R) CENTER)
+                 (ly:stencil-combine-at-edge main X RIGHT wing-R 0)
+                 main))
+            (main
+             (ly:stencil-translate-axis
+              main
+              (- (ly:grob-relative-coordinate bound-L common X))
+              X)))
+       main)))
 
 keyMeter = { \key bes \major \time 4/4 }
 
@@ -40,8 +104,41 @@ keyMeter = { \key bes \major \time 4/4 }
   s1 |
 
   % 4
-  bes4.^"a)"( c16 d <a c>8-1-2 d ees e-1 |
-  s4 s^\turn s2 |
+  bes4.( c16 d <a c>8-1-2 d ees e-1 |
+  s4\once \override Score.FootnoteItem.annotation-line = ##f
+  s^\footnote "a)" #'(-1 . 1)
+  \markup {
+    \center-column {
+      \fill-line {
+	\score {
+	  \new Staff
+	  \with {
+	    instrumentName = "a)   "
+	    \omit Clef
+	    \omit TimeSignature
+	    \magnifyStaff 0.7
+	  } {
+	    \relative c' { bes'4 c32 bes a bes c16 d }
+	  }
+	  \layout {
+	    ragged-right = ##t
+	    indent = 0\cm
+	  }
+	}
+	\null
+	\score {
+	  \new Staff
+	  \with {
+	    instrumentName = "b)   "
+	    \omit TimeSignature
+	    \omit Clef
+	    \magnifyStaff 0.7
+	  } {
+	    \relative c' { d'4 ees32-4 d cis d-1 f8-5_[ d-3] }
+	  }
+	  \layout {
+	    ragged-right = ##t
+	    indent = 0\cm } } } } } ^\turn s2 |
   s1 |
   s1 |
   d8 f d f f,4) r |
@@ -76,7 +173,7 @@ keyMeter = { \key bes \major \time 4/4 }
   s1 |
 
   % 8
-  <f,~ a c ees>2^( <f bes d>8) bes'_[_( c d] |
+  <f,_~ a c ees>2^( <f bes d>8) bes'_[_( c d] |
   s1 |
   s1 |
   s1 |
@@ -89,17 +186,17 @@ keyMeter = { \key bes \major \time 4/4 }
   ees4. \stemUp \tuplet 3/2 { d16 c bes } \stemNeutral a8) c8^[( d ees]
   |  s1 |  s1 |
   s1 |
-  s1 | r8 f'8~ <f~ a~>8 <f~ a~ c~ >8 <f a c ees>8 r8 r4 |   s1 |
+  s1 | r8 f'8~ <f~ a~>8 <f~ a~ c^~ >8 <f a c ees>8 r8 r4 |   s1 |
 
   % 10
   f4. \tupletNeutral \tuplet 3/2 { ees16 d c } bes8) f'8_[( g a] |  s1 |  s1 |
   s1 |
-  s1 | r8 f8~ <f~ bes~>8 <f~ bes~ d~ >8 <f bes d f>8 r8 r4 |   s1 |
+  s1 | r8 f8~ <f~ bes~>8 <f~ bes~ d^~ >8 <f bes d f>8 r8 r4 |   s1 |
 
   % 11
   bes4. \tuplet 3/2 { a16 g f } e8) g8_[( a bes] |  s1 |  s1 |
   s1 |
-  r8 c'8~ <c~ e~>8 <c~ e~ g~ >8 <c e g bes>8 r8 r4 |   s1 |   s1 |
+  r8 c'8~ <c~ e~>8 <c_~ e~ g^~ >8 <c e g bes>8 r8 r4 |   s1 |   s1 |
 
   % 12
   c4. \tuplet 3/2 { bes16 a g } f8) f8_[--( 8-- 8--] |  s1 |  s1 |
@@ -114,18 +211,12 @@ keyMeter = { \key bes \major \time 4/4 }
   <bes, f' bes>8\arpeggio\sustainOn r bes'4\sustainOff 4 4 | s1 |
 
   % 14
-  g8_[ f ees d] d8)^"b)" d_[(\turn f d] | s1 | s1 |
+  g8_[ f ees d] d8)^\markup { \bold "b)" } d_[(^\turn  f d] |
+  s1 |
+  s1 |
   s8\> s s s\! s2 |
   ees8 d c bes bes4) r |
-  bes4 r r2 | s1_"a)"_\markup {
-    \score {
-      \new Staff
-      \with { \remove "Time_signature_engraver" } {
-	\relative c' { bes'4 c32 bes a bes c16 d }
-      }
-      \layout {
-	ragged-right = ##t
-	indent = 0\cm } } } |
+  bes4 r r2 | s1 |
 
   % 15
   bes8) r bes r f r f r |
@@ -137,22 +228,14 @@ keyMeter = { \key bes \major \time 4/4 }
   s1 |
 
   % 16
-  <f,~ a c ees>2^( <f bes d>8)
+  <f,_~ a c ees>2^( <f bes d>8)
   \acciaccatura bes bes'( \acciaccatura c, c' \acciaccatura d, d' |
   s1 |
   s1 |
   s1 |
   bes,4_\finger \markup \tied-lyric #"3~1" f  bes,8) r r4 |
   s1 |
-  s1_"b)"_\markup {
-    \score {
-      \new Staff
-      \with { \remove "Time_signature_engraver" } {
-	\relative c' { d'4 ees32-4 d cis d-1 f8-5 d-3 }
-      }
-      \layout {
-	ragged-right = ##t
-	indent = 0\cm } } } |
+  s1 |
 
   % 17
   <ees, a c ees>4.\arpeggio \tuplet 3/2 { d16 c bes } a8) (c d ees | s1 | s1 |
@@ -161,7 +244,7 @@ keyMeter = { \key bes \major \time 4/4 }
   f8 f'4._~ f e8\rest | s1 |
 
   % 18
-  <f bes d f>4.\arpeggio \tuplet 3/2 { ees'16 d c } bes8) f'4.-3( |
+  \break <f bes d f>4.\arpeggio \tuplet 3/2 { ees'16 d c } bes8) f'4.-3( |
   \set fingeringOrientations = #'(right)
   s2 s8 r8 <d' g-2>8 <a a'> | s1 |
   s4 s s s-"un poco cresc." |
@@ -191,7 +274,7 @@ keyMeter = { \key bes \major \time 4/4 }
   s1 |
 
   % 21
-  <f, bes d f>2)_(\arpeggio e'8^[ f e f] |
+  \break <f, bes d f>2)_(\arpeggio e'8^[ f e f] |
   s8 s4.^\markup { \italic "a tempo" } bes4 4 | s1 |
   s1\p |
   d8(\sustainOn f bes d cis\sustainOff d cis d |
@@ -220,14 +303,14 @@ keyMeter = { \key bes \major \time 4/4 }
   g2 c | s1 |
 
   % 25
-  f2^\markup { \italic "cresc." } \once \stemDown g |
+  \break f2^\markup { \italic "cresc." } \once \stemDown g |
   r8 <bes, d>8 8 8 e'\rest <bes ees g>8 8 8 |
   s1 |
   s1 |
   aes2 g |
   bes2 ees | s1 |
 
-  % 25
+  % 26
   a2( c8 bes a g |
   r8 <c, ees>8 8 <c ees> \stemDown d4_\markup {
     \override #'(on . 0.3)
@@ -238,7 +321,7 @@ keyMeter = { \key bes \major \time 4/4 }
   s1\f |
   f,2 <g bes'>4 ees | s1 | s1 |
 
-  % 26
+  % 27
   \tuplet 3/2 { f8 bes_5 a_5 }
   \tuplet 3/2 { g_4 f ees }
   \tuplet 3/2 { \set fingeringOrientations = #'(left) <d-2> ees_3 f_5 }
@@ -250,7 +333,7 @@ keyMeter = { \key bes \major \time 4/4 }
   ees4\rest \tupletUp \stemUp \tuplet 3/2 { ees8 f g} f4 \tuplet 3/2 { c8 d ees } \stemNeutral \tupletNeutral|
   s1 |
 
-  % 27
+  % 28
   bes8_-) r r4 r8 r8( c'8^[ d] |
   s2 r8 bes'4.-1_~ |
   s1 |
@@ -258,15 +341,15 @@ keyMeter = { \key bes \major \time 4/4 }
   \stemUp d'8\sustainOn \stemNeutral bes'_[( 8\sustainOff 8] a bes aes bes |
   \stemDown bes8 \stemNeutral s s2. | s1 |
 
-  % 28
-  \stemUp f8 ees ees4) r8 d( <c ees> <d f> \stemNeutral |
+  % 29
+  \break \stemUp f8 ees ees4) r8 d( <c ees> <d f> \stemNeutral |
   bes2 r8 \dotsDown bes4. \dotsNeutral |
   s1 |
   s4\> s\! s2-"poco cresc." | 
   g8 bes f bes a bes aes f |
   s1 | s1 |
 
-  % 29
+  % 30
   \set fingeringOrientations = #'(left) \once \stemUp
   <ees-2 g-5>4 f4.) fis8^[( g bes] |
   r8 bes4 4 aes8_[ g des'] |
@@ -276,7 +359,7 @@ keyMeter = { \key bes \major \time 4/4 }
   \stemUp r8 bes4 bes bes4. \stemNeutral |
   s1 |
 
-  % 30
+  % 31
   bes8^[ f]) r8 <bes, d>( <d f> <c ees>) r8 <a c> |
   d4 s2. |
   s1 |
@@ -286,35 +369,35 @@ keyMeter = { \key bes \major \time 4/4 }
   \stemUp f'2 f2 \stemNeutral |
   s1 |
 
-  % 31
+  % 32
   r8 bes( <f' d'> bes) r g,( <ees' bes'> g) |
   s1 | s1 |
   s1 |
   <bes d>4.) r8 <ees, bes' ees>4. r8 |
   s1 | s1 |
 
-  % 32
+  % 33
   r8 f,( <bes f'> d) r f,( <a ees'> c) |
   s1 | s1 |
   s1 |
   <f bes d>4. r8 <ees f a c>4. r8 |
   s1 | s1 |
 
-  % 33
+  % 34
   r8 bes( <f' d'> bes) r g,( <ees' bes'> g) |
   s1 | s1 |
   s4-"piu" s\p s2 |
   d8\sustainOn r <bes' d f> r\sustainOff ees,\sustainOn r <bes' c g'> r\sustainOff |
   s1 | s1 |
 
-  % 34
+  % 35
   r8 f,( <bes f'> d) r f,( <a ees'> c |
   s1 | s1 |
   s1 |
   f8\sustainOn r <bes d f> r\sustainOff f,\sustainOn r <f' a c> r\sustainOff |
   s1 | s1 |
 
-  % 35
+  % 36
   bes4) r b8( c d ees |
   r8 <d, f>8_[ 8 8] s2 |
   s1 |
@@ -322,14 +405,14 @@ keyMeter = { \key bes \major \time 4/4 }
   bes,4\sustainOn c\rest\sustainOff f8\sustainOn <ees' f>8[ 8 8]\sustainOff |
   s1 | s1 |
 
-  % 36
+  % 37
   g8 f) r4 b,8( c d ees |
   s1 | s1 |
   s1 |
   bes,8\sustainOn <bes' d f>8_[ 8 8]\sustainOff f, <a' ees' f>8_[ 8 8] |
   s1 | s1 |
 
-  % 37
+  % 38
   g8 f) r4 e8( <f a,> <g bes,> <a c,> |
   s1 | s1 |
   s1 |
@@ -337,14 +420,14 @@ keyMeter = { \key bes \major \time 4/4 }
   s2 s8 \once \stemUp f'4.^~ | 
   s1 |
 
-  % 38
+  % 39
   <d, bes'>8-.) bes'-. r <d, d'> r <f f'> r <d d'> |
   s1 | s1 |
   s4. s8-"un poco rit." s2 |
   <bes d>4 d f d |
   f4 s2. | s1 |
 
-  % 39
+  % 40
   <bes d f bes>1^\fermata \bar "|." |
   s1 | s1 |
   s2 s2\pp |
@@ -368,6 +451,7 @@ keyMeter = { \key bes \major \time 4/4 }
       \keyMeter \clef bass
       \set midiInstrument = #"piano"
       \set Staff.pedalSustainStyle = #'bracket
+      \override Staff.PianoPedalBracket.stencil = #slanted-bracket
       <<
 	\new Voice = "bass-a" { \voiceOne \relative c \vba }
 	\new Voice = "bass-b" { \voiceTwo \relative c \vbb }
@@ -375,4 +459,26 @@ keyMeter = { \key bes \major \time 4/4 }
   \layout { } 
   \midi { } }
 
+\markup {
+  Thanks to David Nalesnik for the slanted pedal annotation to match the
+  1919 score. }
+\markup {
+  Thanks to Trevor Daniels for sample code to do a staff fragment in a
+  footnotes. }
+\markup { 
+  Thanks to Klaus Blum for advice on how to get the footnotes in a single
+  line. }
+\markup {
+  Thanks to Kieran MacMillan for advice on how to properly lay out parallel
+  rests. }
+\markup {
+  This was typeset by Ted Lemon in 2014 for my father Ed Lemon Jr. }
+\markup {
+  License to use the typeset source is granted under the GNU Public License }
+\markup {
+  Please read the source for more details. }
+\markup {
+  This PDF (or printed copy) is in the public domain. }
+
+\paper { ragged-bottom = ##t }
 
