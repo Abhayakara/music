@@ -466,7 +466,7 @@ keyMeter = { \key bes \major \time 4/4 }
   Thanks to David Nalesnik for the slanted pedal annotation to match the
   1919 score. 
   Thanks to Trevor Daniels for sample code to do a staff fragment in a
-  footnotes. 
+  footnote. 
   Thanks to Klaus Blum for advice on how to get the footnotes in a single
   line. 
   Thanks to Kieran MacMillan for advice on how to properly lay out parallel
