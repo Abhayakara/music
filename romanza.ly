@@ -202,7 +202,7 @@ keyMeter = { \key bes \major \time 4/4 }
   c4. \tuplet 3/2 { bes16 a g } f8) f8_[--( 8-- 8--] |  s1 |  s1 |
   s1 |
   s2 f'4.^( r8 |
-  r8 f8~ <f~ a~>8 <f~ a~ c~ >8 8 d'8_[ ees c_4 ] |   s1 |
+  r8 f8~ <f~ a~>8 <f~ a~ c^~ >8 8 d'8_[ ees c_4 ] |   s1 |
   
   % 13
   f2)( e8_[ f e f] | s1 | s1 |
