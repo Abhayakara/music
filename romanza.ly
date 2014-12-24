@@ -18,6 +18,18 @@
 %    You should have received a copy of the GNU General Public License
 %    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+% However, an exception to the GPL licensing terms is hereby granted
+% for any PDF or printed output generated from this source file.
+% Performances by real persons that are derived from this source file
+% are not, in the opinion of the author, covered by the copyright on
+% this file, since they would be indistinguishable from performances
+% based on the original public domain printed score.   However, for the
+% sake of licensing clarity, such performances are also specifically
+% excepted from the GPL licensing terms.
+% No additional exceptions are granted; for example, this exception
+% _does not apply_ to MIDI files that are generated from this source
+% code.
+
 \header{
   title = "Romanza"
   composer = "Wolfgang Amadeus Mozart"
