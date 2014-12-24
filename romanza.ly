@@ -201,8 +201,8 @@ keyMeter = { \key bes \major \time 4/4 }
   % 12
   c4. \tuplet 3/2 { bes16 a g } f8) f8_[--( 8-- 8--] |  s1 |  s1 |
   s1 |
-  s4. f'4.^( r8 r |
-  r8 f8~ <f~ a~>8 <f a c >4 d'8_[ ees c_4 ] |   s1 |
+  s2 f'4.^( r8 |
+  r8 f8~ <f~ a~>8 <f~ a~ c~ >8 8 d'8_[ ees c_4 ] |   s1 |
   
   % 13
   f2)( e8_[ f e f] | s1 | s1 |
@@ -489,6 +489,29 @@ keyMeter = { \key bes \major \time 4/4 }
 	  \new Voice = "bass-a" { \voiceOne \relative c \vba }
 	  \new Voice = "bass-b" { \voiceTwo \relative c \vbb }
 	  \new Voice = "bass-c" { \voiceThree \relative c \vbc } >> } 
+    >>
+    \layout { 
+    }
+    \midi {
+    }
+  }
+}
+
+\book {
+  \bookOutputSuffix "treble"
+
+  \score {
+    \new PianoStaff <<
+      \new Staff = "trebleStaff" {
+	\tempo "Andante" 4 = 72
+	\keyMeter
+	\set Staff.pedalSustainStyle = #'bracket
+	\override Staff.PianoPedalBracket.stencil = #slanted-bracket
+	\set midiInstrument = #"piano"
+	<<
+	  \new Voice = "tenor-a" { \voiceOne \relative c' \vta } 
+	  \new Voice = "tenor-b" { \voiceTwo \relative c' \vtb }
+	  \new Voice = "tenor-c" { \voiceThree \relative c' \vtc } >> }
     >>
     \layout { 
     }
