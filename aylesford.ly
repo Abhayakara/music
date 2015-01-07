@@ -1,133 +1,146 @@
 
 #(set-global-staff-size 22)
 \header{
-  title = "Aylesford Piece"
-  composer = "Georg Friedrich Haendel"
+  title = "Impertinence"
+  composer = "Georg Friedrich Händel"
 }
 
 keyMeter = { \key g \minor \time 2/2 }
 
-\parallelMusic #'(va dynD vb) {
-  % Measure 1
+\parallelMusic #'(vta vtb dynD vb) {
+  % Measure 0
   \partial 4 d4-1\staccato |
+  \partial 4 s4 |
   \partial 4 s4\mf |
   \partial 4 r4 |
 
-  % Measure 2
-  g4-2-. bes-5-. a-. g8 (fis |
+  % Measure 1
+  g4-2( bes a-3) g8-3( fis |
+  s1 |
   s1 |
   r2 r4 d_5-. |
 
-  % Measure 3
-  g2-2 d4) r |
+  % Measure 2
+  g2-2--) d2--  |
   s1 |
-  g4_2-. a_1-. bes_2-. (a8_1 g |
+  s1 |
+  g4_4\<( a bes\!) a8_1( g |
 
-  % Measure 4
-  a'8-2 (bes c4-.) bes-. a-. |
+  % Measure 3
+  a'8-2( bes c4-.) bes-. a-. |
   s1 |
-  fis2 d4) r |
+  s8 s\> s2. |
+  fis2--) d2-- |
+
+  % 4
+  bes2-3-- g2-- |
+  s1 |
+  s4\! s2. |
+  g4-. g,8_4( a bes4-.) c-._2 |
 
   % 5
-  bes2-3 (g4) r | \break
+  bes8-2( c d4-.) c-.-4 bes-. |
   s1 |
-  g4_1-. g,8_5 (a bes4-.) c-. |
+  s2 s\< |
+  d4-. bes_2-. a-. g-. |
 
   % 6
-  bes8-3 (c d4-.) c-. bes-. |
-  s4 s-"cresc." s2 |
-  d4_1-. bes_2-. a-. g-. |
+  <a c>2( f4-.) d'-4-. |
+  s1 |
+  s2. s4\! |
+  f4-. f'-. ees-. d-. |
 
   % 7
-  c2 (f,4-.) d'-4-.\( |
-  s2. s4\f |
-  f4-. f'_1-. ees-. d-.\( |
+  \stemUp ees2^> \tuplet 3/2 { c8^> d c } d16 c bes c |
+  \stemDown g'2 g |
+  s2\f s2 |
+  c2_4-> \stemUp <ees g_1_2>_> \stemNeutral |
 
   % 8
-  ees2-- c-- |
-  s1 |
-  c2-- ees-- |
-
-  % 9
-  d2.--\)  |
+  d2.^> \stemNeutral |
+  fis2. \stemNeutral |
   s2. |
-  d2.--\) |
+  \stemUp <d a'>2._1_3_> \stemNeutral |
 }
 
 \parallelMusic #'(ve dynF vg) {
-  %10 
+  %8
   d'4-3-. | \break
   s4\p |
   r4 |
 
-  %11
+  %9
   d8-2 (ees f4-.) ees-. d-. |
   s1 |
-  r2 r4 bes'_4 |
+  r2 r4 bes'_3_. |
+
+  %10
+  ees2-4-- c2-2-- |
+  s1 |
+  c4_4( d ees-.) c_1-. |
+
+  %11
+  c8-2( d ees4-.) d-. c-. |
+  s1 |
+  a2_2-- f2_4-- |
 
   %12
-  ees2-3 (c4) r |
+  d2-4-- bes-2-- |
   s1 |
-  c4 (d ees-.) c_2-. |
+  bes4_4( c d-.) bes-. |
 
   %13
-  c8-2 (d ees4-.) d c |
-  s1 |
-  a2_3 (f4) r |
+  bes8-2( c d4-.) c-. bes-. |
+  s4 s-"cresc." s2 |
+  g2_5-- ees'_2-- |
 
   %14
-  d2-4 (bes4-2) r |
+  a8-2( bes c4-.) bes-. a-. |
   s1 |
-  bes4_3 (c d-.) bes |
+  fis,2_5-- d'_2-- |
 
   %15
-  bes8-2 (c d4-.) c-. bes-. | \break
-  s4 s-"cresc." s2 |
-  g2_5-- (ees'_1) |
+  bes4-3-. a8 (bes g4-.) g'-. |
+  s1 |
+  g,2_2-- ees-- |
 
   %16
-  a8 (bes c4-.) bes-. a-. |
+  <fis d a>2^- <d g,>^- |
   s1 |
-  fis,2_5-- (d') |
-
-  %17
-  bes4-3-. a8 (bes g4-1-.) g' |
-  s1 |
-  g,2_2-- (ees_4) |
-
-  %18
-  fis2-4 (d4) r |
-  s1 |
-  d4_1-. c8 (d bes4-.) g-. |
+  d4_2-. c8(_2 d bes4-.) g-. |
 
   %19
-  g4-3-. a-. bes8 (a g fis | \break
+  g4-3( a-4 bes8-5 a g fis) |
   s1\f |
-  ees'4_3-. c-. d_5-. d'-. |
+  ees'4_2-. c_4-. d_3-. d'_2-. |
 
   %20
-  g2-4 d4) r |
+  g2-- d-- |
   s1 |
-  ees4_2 (d8_1 c bes4-.) g-. |
+  ees4_1-. d8_1( c bes4-.) g_5-. |
 
   %21
-  ees8-3 (d c bes-3 a4. g8 |
+  ees8-5( d c bes
+  \tupletDown \tuplet 6/4 { a16-1^[ bes-3 a-2 bes a bes] } \tupletNeutral
+  a8) r16 g |
   s1 |
-  c4-2 (a) d_1-. d,-. |
+  c4_2-. a_4-. <d fis>_2-. d,_5-. |
 
   %22
-  g2.--) |
+  g2.)^\fermata |
   s2. |
-  g2.-- |
+  g2._2^\fermata |
 }
 
 \score {
   \new PianoStaff <<
     \new Staff = "trebleStaff" {
+      \tempo "Vivace"
       \keyMeter
       \set midiInstrument = #"piano"
-      \relative c' 
-      \repeat volta 2 { \va } 
+      \repeat volta 2 {
+	<< \new Voice = "treble-a" { \relative c' \vta }  
+	   \new Voice = "treble-b" { \relative c' \vtb } >> }
       \relative c'
       \repeat volta 2 { \ve }}
     \new Dynamics { \repeat volta 2 { \dynD }
