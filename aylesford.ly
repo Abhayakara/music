@@ -135,7 +135,7 @@ keyMeter = { \key g \minor \time 2/2 }
 \score {
   \new PianoStaff <<
     \new Staff = "trebleStaff" {
-      \tempo "Vivace"
+      \tempo "Vivace" 4 = 120
       \keyMeter
       \set midiInstrument = #"piano"
       \repeat volta 2 {
@@ -155,3 +155,41 @@ keyMeter = { \key g \minor \time 2/2 }
   \layout { }
   \midi {  } }
 
+\book {
+  \bookOutputSuffix "bass"
+
+  \score {
+    \new PianoStaff <<
+      \new Staff = "bassStaff" {
+	\tempo "Vivace" 4 = 120
+	\keyMeter \clef bass
+	\set midiInstrument = #"piano"
+	\relative c \vb
+	\relative c \vg
+      }
+    >>
+    \layout { 
+    }
+    \midi {
+    }
+  }
+}
+
+\book {
+  \bookOutputSuffix "treble"
+
+  \score {
+    \new PianoStaff <<
+      \new Staff = "trebleStaff" {
+	\tempo "Vivace" 4 = 120
+	\keyMeter
+	\set midiInstrument = #"piano"
+	<< \new Voice = "treble-a" { \relative c' \vta }  
+	   \new Voice = "treble-b" { \relative c' \vtb } >> }
+    >>
+    \layout { 
+    }
+    \midi {
+    }
+  }
+}
